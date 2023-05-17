@@ -8,6 +8,3 @@ const server = app.listen(PORT, () => {
   console.log("Server running on port ", PORT);
 });
 app.use("/api/personal", personalRoutes);
-app.get("/api/personal", (req, res) => {
-  res.send("Hello");
-});
