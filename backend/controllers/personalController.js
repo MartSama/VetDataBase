@@ -87,3 +87,19 @@ export const editPersonal = async (req, res) => {
     res.status(500).json({ error: "Error al editar registro" });
   }
 };
+
+export const deletePersonal = async (req, res) => {
+  const { id } = req.params;
+  try {
+    // ToDo: Verificar si el usuario existe
+    const connection = await conectarDB();
+    const query = `DELETE FROM PERSONAL WHERE IDENTIFICADOR = :IDENTIFICADOR`;
+    const result = connection.execute(query, { IDENTIFICADOR: id });
+    res.status(200).json("Usario eliminado correctamente");
+    connection.commit();
+    connection.close();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error al intentar borarr registro" });
+  }
+};
